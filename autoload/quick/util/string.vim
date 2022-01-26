@@ -89,8 +89,9 @@ fu! quick#util#string#trim(str)
     let str_trim = strpart(a:str, idx)
 
     " 截取尾部分
-    let idx = strlen(str_trim) - 1
+    " let idx = strlen(str_trim) - 1
     let str_split = split(a:str, '\zs')
+    let idx = len(str_split) - 1
     while idx >= 0
         let c = str_split[idx]
         if !quick#util#string#isBlank(c)
