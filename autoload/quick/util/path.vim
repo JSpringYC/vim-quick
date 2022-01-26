@@ -56,3 +56,45 @@ fu! quick#util#path#joinHome(...)
 
     return path
 endf
+
+" 函数：判断给定的路径是否存在
+"
+fu! quick#util#path#exists(path)
+    return quick#util#path#isFile(a:path) || quick#util#path#isDir(a:path)
+endf
+
+" 函数：判断给定的路径是否是存在的目录
+"
+fu! quick#util#path#isDir(path)
+    if quick#util#string#isBlank(a:path)
+        return false
+    endif
+
+    return isdirectory(expand(a:path))
+endf
+
+" 函数：列出给定目录中的文件
+"
+fu! quick#util#path#listDir(path)
+    if !quick#util#path#isDir(a:path)
+        return []
+    endif
+
+    return split(globpath(a:path, "*"), "\n")
+endf
+
+" 判断给定的路径是否是存在的文件
+"
+fu! quick#util#path#isFile(path)
+    return filereadable(expand(a:path))
+endf
+
+" 函数：判断文件是否可写
+"
+fu! quick#util#path#isWritableFile(path)
+    if !quick#util#path#isFile(a:path)
+        return false
+    endif
+
+    return filewritable(expand(a:path))
+endf
