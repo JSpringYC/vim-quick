@@ -16,7 +16,7 @@ endf
 "
 " @param str 要处理的字符串
 "
-fu! quick#util#string#isEmpty(str)
+fu! quick#util#string#is_empty(str)
     return quick#util#string#len(a:str) <= 0
 endf
 
@@ -25,9 +25,9 @@ endf
 "
 " @param str 要处理的字符串
 "
-fu! quick#util#string#isBlank(str)
+fu! quick#util#string#is_blank(str)
     " 空串，肯定属于空白字符
-    if quick#util#string#isEmpty(a:str)
+    if quick#util#string#is_empty(a:str)
         return true
     endif
     " 判断空白串逻辑
@@ -55,14 +55,14 @@ endf
 "
 " @param str 要拼接的字符串
 "
-fu! quick#util#string#joinList(str_list)
+fu! quick#util#string#join_list(str_list, sep)
     if a:0 <= 0
         return ''
     endif
 
     let str_join = ''
     for i in a:str_list
-        let str_join = str_join . i
+        let str_join = len(str_join) == 0 ? i : str_join . sep . i
     endfor
 
     return str_join
@@ -74,14 +74,14 @@ endf
 " @param str 要处理的字符串
 "
 fu! quick#util#string#trim(str)
-    if quick#util#string#isBlank(a:str)
+    if quick#util#string#is_blank(a:str)
         return ''
     endif
 
     " 截取首部
     let idx = 0
     for c in split(a:str, '\zs')
-        if !quick#util#string#isBlank(c)
+        if !quick#util#string#is_blank(c)
             break
         endif
         let idx = idx + 1
@@ -94,7 +94,7 @@ fu! quick#util#string#trim(str)
     let idx = len(str_split) - 1
     while idx >= 0
         let c = str_split[idx]
-        if !quick#util#string#isBlank(c)
+        if !quick#util#string#is_blank(c)
             break
         endif
 
