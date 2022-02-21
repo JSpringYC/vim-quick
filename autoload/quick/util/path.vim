@@ -33,7 +33,7 @@ fu! quick#util#path#parent(path)
             break
         endif
 
-        let idx --
+        let idx = idx - 1
     endwhile
 
     " split
