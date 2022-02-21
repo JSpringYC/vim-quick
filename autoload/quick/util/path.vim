@@ -18,10 +18,6 @@ endf
 " 获取父路径
 "
 fu! quick#util#path#parent(path)
-    if !exists(a:path)
-        return ''
-    endif
-
     " find / or \
     let chars = split(a:path, '\zs')
     if len(chars) <= 0
