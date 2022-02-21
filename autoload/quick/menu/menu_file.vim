@@ -6,7 +6,7 @@
 "
 
 " Menu - File - Exit
-fu! quick#menu#file#action_exit()
+fu! quick#menu#menu_file#action_exit()
     let buffers = quick#core#buffer#list()
 
     let is_changed = 0
@@ -30,7 +30,7 @@ fu! quick#menu#file#action_exit()
     endif
 endf
 
-fu! quick#menu#file#init()
+fu! quick#menu#menu_file#init()
     " New file
     call quickui#menu#install('&File', [
             \ ["&New\t:enew", 'enew', "New file"],
@@ -43,7 +43,7 @@ fu! quick#menu#file#init()
 
     " Quit
     call quickui#menu#install('&File', [
-            \ ["&E&xit\t:q", 'call quickui#menu#menu_file#action_exit()', "Quit"],
+            \ ["&E&xit\t:q", 'call quick#menu#menu_file#action_exit()', "Quit"],
           \ ])
 
 endf
