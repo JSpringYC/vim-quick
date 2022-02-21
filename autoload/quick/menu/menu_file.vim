@@ -30,11 +30,26 @@ fu! quick#menu#menu_file#action_exit()
     endif
 endf
 
+" Menu - File - Open
+fu! quick#menu#menu_file#action_open()
+    let file = quick#widgets#file_chooser#open(getcwd())
+
+    if filereadable(file)
+        execute 'e ' . file
+    endif
+endf
+
 fu! quick#menu#menu_file#init()
     " New file
     call quickui#menu#install('&File', [
             \ ["&New\t:enew", 'enew', "New file"],
           \ ])
+
+    " Open file
+    call quickui#menu#install('&File', [
+            \ ["&Open\t:e", 'call quick#menu#menu_file#action_open()', "Open file"],
+          \ ])
+
 
     " separator
     call quickui#menu#install('&File', [
