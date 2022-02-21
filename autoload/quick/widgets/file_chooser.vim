@@ -41,9 +41,7 @@ fu! quick#widgets#file_chooser#open(root)
 
     " show dialog
     let opts = {
-            \ 'index': g:quickui#listbox#cursor, 
             \ 'title': 'Open File',
-            \ 'w': '80',
           \ }
     let idx = quickui#listbox#inputlist(dirs_show, opts)
     if idx < 0
