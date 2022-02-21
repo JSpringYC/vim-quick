@@ -18,7 +18,7 @@ endf
 " 获取父路径
 "
 fu! quick#util#path#parent(path)
-    if !exists(path)
+    if !exists(a:path)
         return ''
     endif
 
@@ -37,7 +37,7 @@ fu! quick#util#path#parent(path)
     endwhile
 
     " split
-    if idx < 0 || idx > len(path) - 1
+    if idx < 0 || idx > len(chars) - 1
         return ''
     endif
 
