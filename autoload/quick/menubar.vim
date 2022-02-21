@@ -1,8 +1,8 @@
 
-function quick#menu#menubar#init()
+function quick#menubar#init()
     " reset menu
     call quickui#menu#reset()
 
     " Menu - file
-    call quickui#menu#menu_file#init()
+    call quickui#menu#file#init()
 endfunction
