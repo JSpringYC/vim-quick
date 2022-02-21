@@ -4,5 +4,5 @@ function quick#menubar#init()
     call quickui#menu#reset()
 
     " Menu - file
-    call quickui#menu#file#init()
+    call quick#menu#file#init()
 endfunction
