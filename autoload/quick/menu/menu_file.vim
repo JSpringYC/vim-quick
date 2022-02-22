@@ -12,7 +12,7 @@ fu! quick#menu#menu_file#action_exit()
     let is_changed = 0
     for buf in buffers
         if buf.changed
-            is_changed = 1
+            let is_changed = 1
         endif
     endfor
 
