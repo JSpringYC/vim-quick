@@ -1,4 +1,6 @@
 
+let g:quick_nerd_font = 1
+
 " choose file
 "
 " param - root dir
@@ -19,21 +21,24 @@ fu! quick#widgets#file_chooser#open(root)
 
     " dir to show
     let dirs_show = []
+    let file_type_dir  = g:quick_nerd_font ? "  " : "[d]"
+    let file_type_file = g:quick_nerd_font ? " 🗎 " : "[f]" 
+    let file_type_none = "   "
     " parent dir
     let parent_dir = quick#util#path#parent(root_dir)
     if len(parent_dir) > 0
-        let dirs_show = add(dirs_show, "[d]\t..")
+        let dirs_show = add(dirs_show, file_type_dir . "\t..")
     endif
 
     for dir in dirs
         let dir_full = root_dir . quick#util#path#separator() . dir
 
         if isdirectory(dir_full)
-            let dir = "[d]\t" . dir
+            let dir = file_type_dir . "\t" . dir
         elseif filereadable(dir_full)
-            let dir = "[f]\t" . dir
+            let dir = file_type_file . "\t" . dir
         else
-            let dir = "[ ]\t" . dir
+            let dir = "   \t" . dir
         endif
 
         let dirs_show = add(dirs_show, dir)
