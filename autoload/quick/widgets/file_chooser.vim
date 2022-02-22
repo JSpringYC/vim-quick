@@ -22,18 +22,18 @@ fu! quick#widgets#file_chooser#open(root)
     " parent dir
     let parent_dir = quick#util#path#parent(root_dir)
     if len(parent_dir) > 0
-        let dirs_show = add(dirs_show, "d\t..")
+        let dirs_show = add(dirs_show, "[d]\t..")
     endif
 
     for dir in dirs
         let dir_full = root_dir . quick#util#path#separator() . dir
 
         if isdirectory(dir_full)
-            let dir = "d\t" . dir
+            let dir = "[d]\t" . dir
         elseif filereadable(dir_full)
-            let dir = "f\t" . dir
+            let dir = "[f]\t" . dir
         else
-            let dir = " \t" . dir
+            let dir = "[ ]\t" . dir
         endif
 
         let dirs_show = add(dirs_show, dir)
@@ -42,6 +42,7 @@ fu! quick#widgets#file_chooser#open(root)
     " show dialog
     let opts = {
             \ 'title': 'Open File',
+            \ 'w': 80,
           \ }
     let idx = quickui#listbox#inputlist(dirs_show, opts)
     if idx < 0
