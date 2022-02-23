@@ -52,13 +52,18 @@ fu! quick#menu#menu_file#init()
 
 
     " separator
+    call quickui#menu#install('&File', [ ["--", ''] ])
+
+    " Reload
     call quickui#menu#install('&File', [
-            \ ["--", ''],
+            \ ["&Reload\t:so $MYVIMRC", 'so $MYVIMRC', "Reload config"],
           \ ])
+
+    call quickui#menu#install('&File', [ ["--", ''] ])
 
     " Quit
     call quickui#menu#install('&File', [
-            \ ["&E&xit\t:q", 'call quick#menu#menu_file#action_exit()', "Quit"],
+            \ ["E&xit\t:q", 'call quick#menu#menu_file#action_exit()', "Quit"],
           \ ])
 
 endf
